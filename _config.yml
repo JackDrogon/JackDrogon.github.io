@@ -1,3 +1,7 @@
-name: Your New Jekyll Site
+username: jackdrogon
+baseurl: /blog
+name: Drogon's Blog
 markdown: redcarpet
-pygments: true
+safe: false
+highlighter: rouge
+title: Drogon's Blog
