@@ -3,5 +3,5 @@ baseurl: /blog
 name: Drogon's Blog
 markdown: redcarpet
 safe: false
-highlighter: rouge
+highlighter: pygments
 title: Drogon's Blog
