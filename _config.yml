@@ -5,3 +5,4 @@ markdown: redcarpet
 safe: false
 highlighter: pygments
 title: Drogon's Blog
+comments: true
