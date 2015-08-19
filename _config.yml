@@ -1,9 +1,12 @@
+# Jekyll Project Setting
+markdown    : redcarpet
+safe        : false
+highlighter : pygments
+comments    : true
+
+# My Personal Information Setting
 username    : JackDrogon
 uname       : Drogon
 baseurl     : /blog
 name        : Drogon's Blog
-markdown    : redcarpet
-safe        : false
-highlighter : pygments
 title       : Drogon's Blog
-comments    : true
