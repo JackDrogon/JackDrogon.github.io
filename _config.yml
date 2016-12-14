@@ -1,7 +1,7 @@
 # Jekyll Project Setting
 markdown    : kramdown
 safe        : false
-highlighter : pygments
+highlighter : rouge
 comments    : true
 
 # My Personal Information Setting
