@@ -1,5 +1,4 @@
 JackDrogon.github.io
 ====================
 
-It's my blog.
-New test, New world!
+个人博客，主要记录一些计算机技术方面的学习与研究.
