@@ -14,53 +14,53 @@ title: Java 中的并发
 第一是继承 Thread 类，实现 run 方法，并创建子类对象。
 
 ```java
-	public void startThreadUseSubClass() {
-		class MyThread extends Thread {
-			public void run() {
-				System.out.println("start thread using Subclass of Thread");
-			}
+public void startThreadUseSubClass() {
+	class MyThread extends Thread {
+		public void run() {
+			System.out.println("start thread using Subclass of Thread");
 		}
-
-		MyThread thread = new MyThread();
-		thread.start();
 	}
+
+	MyThread thread = new MyThread();
+	thread.start();
+}
 ```
 
 另一种是传递给 Thread 构造函数一个 Runnable 对象。
 
 ```java
-	public void startThreadUseRunnalbe() {
-		Thread thread = new Thread(new Runnable() {
-			public void run() {
-				System.out.println("start thread using runnable");
-			}
-		});
-		thread.start();
-	}
+public void startThreadUseRunnalbe() {
+	Thread thread = new Thread(new Runnable() {
+		public void run() {
+			System.out.println("start thread using runnable");
+		}
+	});
+	thread.start();
+}
 ```
 
 当然， Runnalbe 对象，也不是只有这一种形式，例如如果我们想要线程执行时返回一个值，就需要用到另一种 Runnalbe 对象，它
 对原来的 Runnalbe 对象进行了包装。
 
 ```java
-	public void startFutureTask() {
-		FutureTask<Integer> task = new FutureTask<>(new Callable<Integer>() {
-			public Integer call() {
-				return 1;
-			}
-		});
-
-		new Thread(task).start();
-
-		try {
-			Integer result = task.get();
-			System.out.println("future result " + result);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			e.printStackTrace();
+public void startFutureTask() {
+	FutureTask<Integer> task = new FutureTask<>(new Callable<Integer>() {
+		public Integer call() {
+			return 1;
 		}
+	});
+
+	new Thread(task).start();
+
+	try {
+		Integer result = task.get();
+		System.out.println("future result " + result);
+	} catch (InterruptedException e) {
+		e.printStackTrace();
+	} catch (ExecutionException e) {
+		e.printStackTrace();
 	}
+}
 ```
 
 ## 结束线程
@@ -71,7 +71,7 @@ sleep 会使得当前线程休眠一段时间，但并不会释放已经得到�
 
 wait 会阻塞住，并释放已经得到的锁。一直到有人调用 notify 或者 notifyAll，它会重新尝试得到锁，然后再唤醒。
 
-## 线程池 
+## 线程池
 
 ### 好处
 
@@ -117,7 +117,7 @@ for (int i = 0; i < 14; i++) {
 
 另外，还提供了 `newSingleThreadExecutor` 创建有一个工作线程的线程池。
 
-### 原理 
+### 原理
 
 JDK 中的线程池通过 HashSet 存储工作者线程，通过 BlockingQueue 来存储待处理任务。
 
@@ -126,4 +126,3 @@ JDK 中的线程池通过 HashSet 存储工作者线程，通过 BlockingQueue �
 者数目是不是小于最大工作者数目，如果小于，则创建工作者线程执行这个任务。否则，拒绝执行这个任务。
 
 另外，如果待处理队列中没有任务要处理，并且工作者线程数目超过了核心工作者数目，那么，需要减少工作者线程数目。
-
