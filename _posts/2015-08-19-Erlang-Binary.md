@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Erlang Binary"
-date:   2015-08-15 
+date:   2015-08-15
 lastchang: 2015-08-15
 categories: Erlang
 ---
@@ -29,6 +29,47 @@ categories: Erlang
  
 ```
 
+### 1. at/2
+
+at(Subject, Pos), at用来返回binary中的第几个字节，等于把binary看成了一个byte array，此处要注意 Pos >= 0, 超过binary长度的就会throw badarg。  
+BTW，这次erlang的下标是从0开始，然而lists，regex等很多其他标准库中很多函数的下标是从1开始的。erlang的标准库的风格让人感觉很不统一，很多时候Subject在后面，这次又在前面。
+
+```erlang
+-spec at(Subject, Pos) -> byte() when
+      Subject :: binary(),
+```
+example:
+
+```erlang
+binary:at(<<"Hello">>, 0). %% 72 -> "H"
+bianry:at(<<"Hello">>, 6). 
+%% ** exception error: bad argument
+%%     in function  binary:at/2
+%%        called as binary:at(<<"Hello">>,6)
+```
+
+### 2. bin_to_list/1, bin_to_list/2, bin_to_list/3
+
+bin_to_list(Subject) = bin_to_list(Subject, {0, byte_size(Subject)})
+bin_to_list(Subjct, Pos, Len) = bin_to_list(Subject,{Pos,Len})
+
+```erlang
+bin_to_list(Subject) -> [byte()]
+bin_to_list(Subject, PosLen) -> [byte()], PosLen -> {Pos, Len}
+bin_to_list(Subject, Pos, Len) -> [byte()]
+```
+
+### 3. compile_pattern/1
+### 4. copy/1, copy/2
+### 5. decode_unsigned/1, decode_unsigned/2
+### 6. first/1
+### 7. last/1
+### 8. list_to_bin/1
+### 9. longest_common_prefix/1
+### 10. longest_common_suffix
+### 11. match/2 match/3
+### 12. matches/2
+
 ## Normal Functions
 
 1. split/2, split/3
@@ -37,6 +78,9 @@ categories: Erlang
 ```erlang
 -export([split/2,split/3,replace/3,replace/4]).
 ```
+
+### 1. split/2, split/3
+### 2. replace/3, replace/4
 
 
 ## Binary Utils
